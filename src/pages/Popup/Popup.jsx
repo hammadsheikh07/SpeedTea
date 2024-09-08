@@ -1,25 +1,29 @@
-import React from 'react';
-import logo from '../../assets/img/logo.svg';
-import Greetings from '../../containers/Greetings/Greetings';
+import React, { useEffect, useState } from 'react';
 import './Popup.css';
+import { dummyRaceData } from '../dummyData/dummyRaceData';
+import Circuit from './components/circuit/Circuit';
 
 const Popup = () => {
+  const [raceData, setRaceData] = useState({});
+  useEffect(()=>{
+    setRaceData(dummyRaceData)
+    if(dummyRaceData?.response[0]?.fastest_lap?.driver?.id)
+    {
+
+    }
+  },[])
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/pages/Popup/Popup.jsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React!
-        </a>
-      </header>
+      <div className="flex-container">
+        <img
+          src="https://logos-world.net/wp-content/uploads/2023/12/F1-Logo.png"
+          alt="f1-logo"
+          width={'60px'}
+        />
+        <h1 style={{ marginLeft: '5px' }}>Next Race</h1>
+      </div>
+      <hr></hr>
+      <Circuit raceData={dummyRaceData?.response[0]} />
     </div>
   );
 };
